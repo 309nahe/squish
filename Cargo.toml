@@ -1,0 +1,18 @@
+[package]
+name = "squish"
+version = "0.1.0"
+edition = "2021"
+description = "Tiny self-hosted image optimizer: resize, convert to WebP/JPEG/PNG, strip metadata. Stateless."
+publish = false
+
+[dependencies]
+axum = { version = "0.8", features = ["multipart"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "net", "sync"] }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "gif", "webp", "bmp", "tiff"] }
+webp = { version = "0.3", default-features = false }
+jpeg-encoder = "0.6"
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true

@@ -1,0 +1,21 @@
+[Unit]
+Description=squish (image compressor, private network only)
+After=network.target
+
+[Service]
+User=CHANGEME
+ExecStart=/opt/squish/squish
+Environment=BIND=127.0.0.1:8452
+Restart=on-failure
+RestartSec=3
+StartLimitIntervalSec=300
+StartLimitBurst=20
+PrivateTmp=true
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+MemoryMax=1G
+CPUQuota=200%
+
+[Install]
+WantedBy=multi-user.target
